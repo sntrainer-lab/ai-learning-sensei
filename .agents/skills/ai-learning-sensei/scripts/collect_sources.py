@@ -223,14 +223,33 @@ def main() -> int:
             continue
         name = source.get("name") or source.get("url") or source.get("path") or "unnamed"
         try:
-            if source.get("type") == "file":
+            source_type = source.get("type")
+            if source_type in {"telegram", "social"}:
+                if source.get("ownership_confirmed") is not True:
+                    raise ValueError(f"{source_type} source requires ownership_confirmed: true")
+                method = source.get("collection_method")
+                if method == "agent_connector":
+                    report.append({
+                        "source": name,
+                        "status": "agent_action_required",
+                        "connector": source.get("connector"),
+                        "message": "Use the already authorized host connector in read-only mode, then ingest selected AI material.",
+                    })
+                    continue
+                if method == "export_file":
+                    items = collect_file(source, root)
+                elif method == "public_web":
+                    items = collect_web(source, settings)
+                else:
+                    raise ValueError("collection_method must be public_web, export_file, or agent_connector")
+            elif source_type == "file":
                 items = collect_file(source, root)
             else:
-                items = collectors[source["type"]](source, settings)
+                items = collectors[source_type](source, settings)
             added = 0
             for item in items:
                 added += sensei_store.ingest_row(
-                    connection, profile, source=source["type"], source_name=name,
+                    connection, profile, source=source_type, source_name=name,
                     title=item["title"], content=item.get("content", ""),
                     url=item.get("url"), external_id=item.get("external_id"),
                     published_at=item.get("published_at"), metadata=item.get("metadata"),

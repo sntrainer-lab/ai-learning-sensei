@@ -9,7 +9,7 @@ Start in the user's language. Explain in one sentence that the answers will crea
 1. role or current context, and two or three real tasks where AI may help;
 2. desired AI capabilities or outcomes for the next 1–3 months;
 3. current hands-on AI level and tools already used;
-4. sources they want the mentor to follow: URLs, RSS/Atom feeds, GitHub repositories, or local files;
+4. sources they want the mentor to follow: URLs, RSS/Atom feeds, GitHub repositories, local files, and their own Telegram channels or social accounts;
 5. realistic cadence: sessions per week, preferred days/time, timezone, and minutes per session (normally 30–60);
 6. priorities, exclusions, language, and privacy constraints.
 
@@ -18,6 +18,8 @@ Allow partial answers. Infer harmless formatting defaults, but do not invent sou
 ## Agreement and persistence
 
 Summarize 2–4 outcome-oriented AI priorities, expected practice artifacts, cadence, approved sources, and topics to avoid. Ask for correction only if the response is ambiguous; otherwise proceed.
+
+For each Telegram or social source, confirm that the learner owns or manages it and record `ownership_confirmed: true`. Agree on a read-only collection method: `public_web`, `export_file`, or `agent_connector`. Never connect somebody else's social account or Telegram channel as an account source.
 
 Create `config/profile.json` from `config/profile.example.json` and `config/sources.json` from `config/sources.example.json`. Keep valid JSON and repository-relative local paths. Then run:
 

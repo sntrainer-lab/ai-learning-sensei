@@ -289,14 +289,28 @@ def validate_config(root: Path) -> dict:
         errors.append("cadence.session_minutes must be an integer from 15 to 120")
     if not isinstance(sources.get("sources", []), list):
         errors.append("sources must be a list")
-    supported = {"rss", "web", "github", "file"}
+    supported = {"rss", "web", "github", "file", "telegram", "social"}
+    account_methods = {"public_web", "export_file", "agent_connector"}
     for index, source in enumerate(sources.get("sources", [])):
-        if source.get("type") not in supported:
+        source_type = source.get("type")
+        if source_type not in supported:
             errors.append(f"sources[{index}].type must be one of {sorted(supported)}")
-        if source.get("type") == "file" and not source.get("path"):
+        if source_type == "file" and not source.get("path"):
             errors.append(f"sources[{index}].path is required")
-        if source.get("type") != "file" and not source.get("url"):
+        if source_type in {"rss", "web", "github"} and not source.get("url"):
             errors.append(f"sources[{index}].url is required")
+        if source_type in {"telegram", "social"}:
+            method = source.get("collection_method")
+            if source.get("ownership_confirmed") is not True:
+                errors.append(f"sources[{index}].ownership_confirmed must be true for {source_type}")
+            if method not in account_methods:
+                errors.append(f"sources[{index}].collection_method must be one of {sorted(account_methods)}")
+            if method == "public_web" and not source.get("url"):
+                errors.append(f"sources[{index}].url is required for public_web")
+            if method == "export_file" and not source.get("path"):
+                errors.append(f"sources[{index}].path is required for export_file")
+            if method == "agent_connector" and not source.get("connector"):
+                errors.append(f"sources[{index}].connector is required for agent_connector")
     safe_backlog_path(root, profile)
     if errors:
         raise ValueError("; ".join(errors))

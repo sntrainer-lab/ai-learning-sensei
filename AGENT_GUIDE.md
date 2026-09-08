@@ -7,6 +7,7 @@ This repository is an independent per-user memory for learning artificial intell
 - If `config/profile.json` or `config/sources.json` is missing, run onboarding before collecting material or recommending a lesson.
 - During onboarding, read the example configs and the skill's `references/onboarding.md`, interview the user, agree on a realistic cadence, then create both local config files and initialize the store.
 - Study only AI-related capabilities, tools, methods, repositories, and workflows. A business topic belongs only when AI is the mechanism being learned.
+- Connect a Telegram channel or social account only when the learner explicitly confirms that they own or manage it. Keep access read-only and use a public page, local export, or already authorized host connector.
 
 ## Persistent learning work
 

@@ -28,6 +28,24 @@
       "type": "file",
       "path": "inbox/learning.md",
       "enabled": false
+    },
+    {
+      "name": "My Telegram channel",
+      "type": "telegram",
+      "platform": "telegram",
+      "url": "https://t.me/example_channel",
+      "collection_method": "public_web",
+      "ownership_confirmed": false,
+      "enabled": false
+    },
+    {
+      "name": "My social account export",
+      "type": "social",
+      "platform": "instagram",
+      "path": "inbox/my-social-export.md",
+      "collection_method": "export_file",
+      "ownership_confirmed": false,
+      "enabled": false
     }
   ]
 }

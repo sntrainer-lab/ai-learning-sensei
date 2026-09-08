@@ -33,6 +33,7 @@ Use the equivalent `.claude/skills/...` path inside Claude Code if `.agents/...`
 
 - Teach artificial intelligence: its tools, models, agents, automation, evaluation, prompting, data workflows, content workflows, safety, and practical applications. Reject a topic when AI is incidental or absent.
 - Sources come from the learner. Do not silently add the maintainer's feeds, accounts, or preferences.
+- Treat Telegram channels and social accounts as connectable account sources only when the learner explicitly confirms ownership or management; keep them read-only.
 - Collection is read-only. Do not alter social accounts or external content.
 - Keep credentials, private messages, private feeds, browser data, personal configs, SQLite state, generated backlog, and retrospectives out of Git.
 - Never invent a source URL, artifact, result, or verification.

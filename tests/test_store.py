@@ -84,6 +84,36 @@ class SenseiStoreTest(unittest.TestCase):
         self.run_store("maintain")
         self.assertEqual(self.run_store("status")["counts"]["active_materials"], 1)
 
+    def test_social_source_requires_ownership_and_supports_export(self) -> None:
+        (self.root / "inbox" / "social.md").write_text(
+            "My post about testing an LLM agent with evals.", encoding="utf-8"
+        )
+        unconfirmed = {
+            "collection": {},
+            "sources": [{
+                "name": "Social export", "type": "social", "platform": "instagram",
+                "path": "inbox/social.md", "collection_method": "export_file",
+                "ownership_confirmed": False, "enabled": True,
+            }],
+        }
+        config_path = self.root / "config" / "sources.json"
+        config_path.write_text(json.dumps(unconfirmed), encoding="utf-8")
+        invalid = subprocess.run(
+            [sys.executable, str(STORE), "--repo-root", str(self.root), "validate-config"],
+            capture_output=True, text=True, encoding="utf-8",
+        )
+        self.assertNotEqual(invalid.returncode, 0)
+        self.assertIn("ownership_confirmed", invalid.stderr)
+
+        unconfirmed["sources"][0]["ownership_confirmed"] = True
+        config_path.write_text(json.dumps(unconfirmed), encoding="utf-8")
+        self.assertTrue(self.run_store("validate-config")["valid"])
+        result = subprocess.run(
+            [sys.executable, str(COLLECT), "--repo-root", str(self.root)],
+            check=True, capture_output=True, text=True, encoding="utf-8",
+        )
+        self.assertEqual(json.loads(result.stdout)["sources"][0]["added"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
