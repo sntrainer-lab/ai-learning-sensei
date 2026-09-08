@@ -1,7 +1,7 @@
 # AI Learning Sensei
 
 <p align="center">
-  <img src="assets/ai-learning-sensei.png" alt="AI Learning Sensei" width="260">
+  <img src="assets/ai-learning-sensei.png" alt="AI Learning Sensei" width="160">
 </p>
 
 Это готовый личный наставник для изучения искусственного интеллекта. Он помогает не теряться в потоке новых инструментов, превращает интересные материалы в понятный план и проводит короткие практические занятия.
