@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+
+# Per-user learning memory and private configuration
+config/profile.json
+config/sources.json
+data/*
+!data/.gitkeep
+BACKLOG.md
+retrospectives/*.md
+!retrospectives/.gitkeep
+
+# Local agent settings
+.claude/settings.local.json
+.codex/
+.DS_Store
+Thumbs.db

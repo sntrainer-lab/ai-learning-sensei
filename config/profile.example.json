@@ -1,0 +1,25 @@
+{
+  "learner": {
+    "name": "",
+    "role": "",
+    "current_ai_level": "beginner",
+    "language": "ru",
+    "timezone": "Europe/Moscow"
+  },
+  "learning_goals": [],
+  "real_work_tasks": [],
+  "priority_areas": [],
+  "low_priority_areas": [],
+  "cadence": {
+    "sessions_per_week": 2,
+    "preferred_days": [],
+    "preferred_time": "09:00",
+    "session_minutes": 45
+  },
+  "session": {
+    "recommendation_count": 3,
+    "completion_requires_artifact": false,
+    "manual_marker": "в обучение"
+  },
+  "backlog_file": "BACKLOG.md"
+}

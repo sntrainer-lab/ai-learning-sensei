@@ -1,0 +1,33 @@
+{
+  "collection": {
+    "lookback_days": 30,
+    "request_timeout_seconds": 20,
+    "user_agent": "ai-learning-sensei/1.0"
+  },
+  "sources": [
+    {
+      "name": "Example AI feed",
+      "type": "rss",
+      "url": "https://example.com/feed.xml",
+      "enabled": false
+    },
+    {
+      "name": "Example AI page",
+      "type": "web",
+      "url": "https://example.com/ai-guide",
+      "enabled": false
+    },
+    {
+      "name": "Example repository",
+      "type": "github",
+      "url": "https://github.com/owner/repository",
+      "enabled": false
+    },
+    {
+      "name": "Local learning inbox",
+      "type": "file",
+      "path": "inbox/learning.md",
+      "enabled": false
+    }
+  ]
+}

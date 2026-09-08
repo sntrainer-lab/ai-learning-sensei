@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Learning Sensei"
+  short_description: "Personal AI learning backlog and practical sessions"
+  default_prompt: "Set up or continue my practical AI learning system using my goals and sources."
