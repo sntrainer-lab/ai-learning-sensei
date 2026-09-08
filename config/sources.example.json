@@ -30,21 +30,19 @@
       "enabled": false
     },
     {
-      "name": "My Telegram channel",
+      "name": "Selected public Telegram channel",
       "type": "telegram",
       "platform": "telegram",
       "url": "https://t.me/example_channel",
       "collection_method": "public_web",
-      "ownership_confirmed": false,
       "enabled": false
     },
     {
-      "name": "My social account export",
+      "name": "Selected public social page",
       "type": "social",
       "platform": "instagram",
-      "path": "inbox/my-social-export.md",
-      "collection_method": "export_file",
-      "ownership_confirmed": false,
+      "url": "https://example.com/public-ai-page",
+      "collection_method": "public_web",
       "enabled": false
     }
   ]

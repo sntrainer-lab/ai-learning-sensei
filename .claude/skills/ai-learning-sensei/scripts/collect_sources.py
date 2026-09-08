@@ -225,9 +225,9 @@ def main() -> int:
         try:
             source_type = source.get("type")
             if source_type in {"telegram", "social"}:
-                if source.get("ownership_confirmed") is not True:
-                    raise ValueError(f"{source_type} source requires ownership_confirmed: true")
                 method = source.get("collection_method")
+                if method in {"export_file", "agent_connector"} and source.get("access_authorized") is not True:
+                    raise ValueError(f"{method} source requires access_authorized: true")
                 if method == "agent_connector":
                     report.append({
                         "source": name,

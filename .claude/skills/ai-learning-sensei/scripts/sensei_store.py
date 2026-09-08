@@ -301,8 +301,6 @@ def validate_config(root: Path) -> dict:
             errors.append(f"sources[{index}].url is required")
         if source_type in {"telegram", "social"}:
             method = source.get("collection_method")
-            if source.get("ownership_confirmed") is not True:
-                errors.append(f"sources[{index}].ownership_confirmed must be true for {source_type}")
             if method not in account_methods:
                 errors.append(f"sources[{index}].collection_method must be one of {sorted(account_methods)}")
             if method == "public_web" and not source.get("url"):
@@ -311,6 +309,8 @@ def validate_config(root: Path) -> dict:
                 errors.append(f"sources[{index}].path is required for export_file")
             if method == "agent_connector" and not source.get("connector"):
                 errors.append(f"sources[{index}].connector is required for agent_connector")
+            if method in {"export_file", "agent_connector"} and source.get("access_authorized") is not True:
+                errors.append(f"sources[{index}].access_authorized must be true for {method}")
     safe_backlog_path(root, profile)
     if errors:
         raise ValueError("; ".join(errors))

@@ -84,29 +84,40 @@ class SenseiStoreTest(unittest.TestCase):
         self.run_store("maintain")
         self.assertEqual(self.run_store("status")["counts"]["active_materials"], 1)
 
-    def test_social_source_requires_ownership_and_supports_export(self) -> None:
+    def test_public_social_source_needs_no_ownership_and_export_needs_authorization(self) -> None:
         (self.root / "inbox" / "social.md").write_text(
             "My post about testing an LLM agent with evals.", encoding="utf-8"
         )
-        unconfirmed = {
+        public_source = {
+            "collection": {},
+            "sources": [{
+                "name": "Public AI page", "type": "social", "platform": "instagram",
+                "url": "https://example.com/public-ai-page", "collection_method": "public_web",
+                "enabled": False,
+            }],
+        }
+        config_path = self.root / "config" / "sources.json"
+        config_path.write_text(json.dumps(public_source), encoding="utf-8")
+        self.assertTrue(self.run_store("validate-config")["valid"])
+
+        unauthorized_export = {
             "collection": {},
             "sources": [{
                 "name": "Social export", "type": "social", "platform": "instagram",
                 "path": "inbox/social.md", "collection_method": "export_file",
-                "ownership_confirmed": False, "enabled": True,
+                "access_authorized": False, "enabled": True,
             }],
         }
-        config_path = self.root / "config" / "sources.json"
-        config_path.write_text(json.dumps(unconfirmed), encoding="utf-8")
+        config_path.write_text(json.dumps(unauthorized_export), encoding="utf-8")
         invalid = subprocess.run(
             [sys.executable, str(STORE), "--repo-root", str(self.root), "validate-config"],
             capture_output=True, text=True, encoding="utf-8",
         )
         self.assertNotEqual(invalid.returncode, 0)
-        self.assertIn("ownership_confirmed", invalid.stderr)
+        self.assertIn("access_authorized", invalid.stderr)
 
-        unconfirmed["sources"][0]["ownership_confirmed"] = True
-        config_path.write_text(json.dumps(unconfirmed), encoding="utf-8")
+        unauthorized_export["sources"][0]["access_authorized"] = True
+        config_path.write_text(json.dumps(unauthorized_export), encoding="utf-8")
         self.assertTrue(self.run_store("validate-config")["valid"])
         result = subprocess.run(
             [sys.executable, str(COLLECT), "--repo-root", str(self.root)],
