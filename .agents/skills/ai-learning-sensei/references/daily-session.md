@@ -18,6 +18,8 @@ Record it with `sensei_store.py record-choice`. Confirm result, success criterio
 
 ## PRACTICE
 
+Use the project skill `ai-learning-session` for the teaching mechanics. Establish an observable capability, adapt to a compact diagnostic, practise in small iterations, inspect evidence, and verify learning with recall, explanation, correction, or transfer before closure.
+
 Before every action batch, including troubleshooting, write:
 
 - `Что сейчас:` one plain-language mechanism;
@@ -30,4 +32,4 @@ Wait for evidence before continuing. Explain commands. Prefer a real task and re
 
 Only `завершить сессию`, optionally followed by a path or URL, starts closure. Standalone `готово` ends only the current iteration. Inspect an accessible artifact, then ask exactly: `Польза (1–5) и сложность (1–5)? Ответьте двумя цифрами, например: 5 3.`
 
-After both ratings, create the retrospective, run `sensei_store.py complete`, and verify the backlog changed. Return `Коротко об инструменте`, `Что получилось`, an optional Mermaid flowchart for a real three-stage workflow, and `Результаты и ссылки`. Never include private or unverified links.
+After both ratings, create the retrospective, run `sensei_store.py complete`, and verify the backlog changed. Then use `ai-knowledge-synthesis` to create or update `KNOWLEDGE.md` from the demonstrated evidence. Return `Коротко об инструменте`, `Что получилось`, an optional Mermaid flowchart for a real three-stage workflow, and `Результаты и ссылки`, including the knowledge base. Never include private or unverified links.

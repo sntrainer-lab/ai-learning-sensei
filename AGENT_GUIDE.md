@@ -17,11 +17,13 @@ This repository is an independent per-user memory for learning artificial intell
 - In Codex, rename a new lesson task to `ИИ-обучение — DD.MM.YYYY` when task-title controls are available. In other hosts, use the same phrase as the suggested session name.
 - Before recommendations, refresh configured sources when network/file access permits, run maintenance, link `BACKLOG.md`, and show exactly three strongest topics.
 - Run dialogue-based practice within the duration agreed during onboarding. Before every practical batch write `Что сейчас`, `Зачем тебе`, and `Сделай` (or equivalent headings in the learner's language).
+- Use `ai-learning-session` inside practice: diagnose briefly, explain only what enables the next action, inspect evidence, give targeted feedback, and check retrieval or transfer before claiming learning.
 - A standalone `готово` ends only the current practice iteration. Only `завершить сессию`, optionally followed by an artifact path or URL, starts closure.
-- After closure, ask only for usefulness and difficulty from 1 to 5, save a retrospective, complete the session in SQLite, and regenerate `BACKLOG.md`.
+- After closure, ask only for usefulness and difficulty from 1 to 5, save a retrospective, complete the session in SQLite, regenerate `BACKLOG.md`, and use `ai-knowledge-synthesis` to update the cumulative `KNOWLEDGE.md`.
+- Treat retrospectives as per-session history and `KNOWLEDGE.md` as the current cross-session map of demonstrated capabilities, patterns, gaps, and review prompts.
 
 ## Safety and privacy
 
 - Collection is read-only. Never post, comment, like, follow, message, subscribe, or change an external account.
-- Never commit credentials, private feeds, browser/session data, private messages, personal configs, the SQLite database, generated backlog, or learner retrospectives.
+- Never commit credentials, private feeds, browser/session data, private messages, personal configs, the SQLite database, generated backlog, learner retrospectives, or the learner's generated knowledge base.
 - Do not invent or imply verification of links that were not opened.

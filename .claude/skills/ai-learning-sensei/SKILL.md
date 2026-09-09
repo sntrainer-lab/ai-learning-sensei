@@ -1,6 +1,6 @@
 ---
 name: ai-learning-sensei
-description: Build and run a persistent, interview-led learning system specifically for artificial intelligence. Use for first-time learner onboarding, user-provided learning sources, AI backlog curation, practical AI lessons, progress tracking, and retrospectives. Do not use for general tutoring unrelated to AI.
+description: Orchestrate a persistent, interview-led system for learning artificial intelligence. Use for onboarding, learner-provided sources, AI backlog curation, lesson routing, progress, retrospectives, and cumulative knowledge. Do not use for general tutoring unrelated to AI.
 ---
 
 # AI Learning Sensei
@@ -15,6 +15,8 @@ Turn the learner's own goals and sources into a practical AI-learning trajectory
 4. For backlog refresh or prioritization, read [learning-policy.md](references/learning-policy.md).
 5. For opening or running a lesson, read [daily-session.md](references/daily-session.md).
 6. For closure, additionally read [retrospective-template.md](references/retrospective-template.md).
+7. During practice, use the project skill `ai-learning-session` for the teaching loop.
+8. After closure or for cross-session summaries, use `ai-knowledge-synthesis` and update `KNOWLEDGE.md`.
 
 Read only the references needed for the current mode.
 
@@ -46,5 +48,6 @@ Use the equivalent `.claude/skills/...` path inside Claude Code if `.agents/...`
 - `data/sensei.db`: materials and session history.
 - `BACKLOG.md`: single generated backlog snapshot, overwritten on refresh.
 - `retrospectives/`: one concise record per completed lesson.
+- `KNOWLEDGE.md`: cumulative map of demonstrated capabilities, reusable patterns, gaps, and open questions.
 
 Use `scripts/sensei_store.py` for deterministic state changes and `scripts/collect_sources.py` for configured read-only collection.

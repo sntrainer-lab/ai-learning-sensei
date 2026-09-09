@@ -12,6 +12,7 @@ config/sources.json
 data/*
 !data/.gitkeep
 BACKLOG.md
+KNOWLEDGE.md
 retrospectives/*.md
 !retrospectives/.gitkeep
 

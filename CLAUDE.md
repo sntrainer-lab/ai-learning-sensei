@@ -1,3 +1,3 @@
 @AGENT_GUIDE.md
 
-Use the project skill `/ai-learning-sensei` for onboarding, sources, backlog, lessons, progress, and retrospectives.
+Use `/ai-learning-sensei` for orchestration, `/ai-learning-session` for teaching practice, and `/ai-knowledge-synthesis` for cumulative summaries and review.
